@@ -4,3 +4,4 @@ firebase-admin
 langchain
 langchain-google-genai
 python-dotenv
+gunicorn
