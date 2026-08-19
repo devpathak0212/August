@@ -2,7 +2,7 @@
 
 A fall-themed AI chatbot with a Flask + LangChain + Gemini backend and a React frontend, with Firebase handling auth and chat history.
 
-**Live app:** [_add your Vercel URL here_](https://august-the-chatbot.vercel.app/)
+**Live app:** [August-The-Chatbot](https://august-the-chatbot.vercel.app/)
 
 ---
 
