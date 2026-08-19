@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import { useTheme } from "./hooks/useTheme";
-import ThemeToggle from "./components/ThemeToggle";
 import AuthPage from "./components/AuthPage";
 import ChatWindow from "./components/ChatWindow";
 import "./styles/theme.css";
@@ -25,20 +24,22 @@ export default function App() {
     setUser({ ...auth.currentUser });
   }
 
-  return (
-    <>
-      <ThemeToggle theme={theme} onToggle={toggleTheme} />
+  if (user === undefined) {
+    return (
+      <div className="boot-screen">
+        <div className="moon-glow" aria-hidden="true" />
+        <p>august</p>
+      </div>
+    );
+  }
 
-      {user === undefined ? (
-        <div className="boot-screen">
-          <div className="moon-glow" aria-hidden="true" />
-          <p>AUGUST</p>
-        </div>
-      ) : user ? (
-        <ChatWindow user={user} />
-      ) : (
-        <AuthPage onAfterSignup={refreshUser} />
-      )}
-    </>
+  return user ? (
+    <ChatWindow user={user} theme={theme} onToggleTheme={toggleTheme} />
+  ) : (
+    <AuthPage
+      onAfterSignup={refreshUser}
+      theme={theme}
+      onToggleTheme={toggleTheme}
+    />
   );
 }

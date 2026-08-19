@@ -3,8 +3,9 @@ import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { sendMessage, fetchHistory } from "../api";
 import MessageBubble from "./MessageBubble";
+import ThemeToggle from "./ThemeToggle";
 
-export default function ChatWindow({ user }) {
+export default function ChatWindow({ user, theme, onToggleTheme }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
@@ -74,13 +75,16 @@ export default function ChatWindow({ user }) {
         <div className="chat-header-left">
           <div className="moon-glow" aria-hidden="true" />
           <div>
-            <div className="brand-mark brand-mark-sm">august</div>
+            <div className="brand-mark">august</div>
             <div className="chat-subtitle">{user.displayName || user.email}</div>
           </div>
         </div>
-        <button className="btn-ghost" onClick={() => signOut(auth)}>
-          Log out
-        </button>
+        <div className="chat-header-right">
+          <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+          <button className="btn-ghost" onClick={() => signOut(auth)}>
+            Log out
+          </button>
+        </div>
       </header>
 
       <main className="chat-body" ref={scrollRef}>

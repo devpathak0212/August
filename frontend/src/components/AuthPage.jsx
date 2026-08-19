@@ -5,8 +5,9 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase";
+import ThemeToggle from "./ThemeToggle";
 
-export default function AuthPage({ onAfterSignup }) {
+export default function AuthPage({ onAfterSignup, theme, onToggleTheme }) {
   const [mode, setMode] = useState("login"); // "login" | "signup"
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -51,7 +52,10 @@ export default function AuthPage({ onAfterSignup }) {
       </div>
 
       <div className="auth-card">
-        <div className="brand-mark">august</div>
+        <div className="auth-toggle-corner">
+          <ThemeToggle theme={theme} onToggle={onToggleTheme} />
+        </div>
+        <div className="brand-mark brand-mark-hero">august</div>
         <div className="auth-eyebrow">The Chatbot</div>
         <h1 className="auth-title">
           {isSignup ? "Plant a new account" : "Welcome back"}

@@ -117,12 +117,13 @@ button {
   outline-offset: 2px;
 }
 
-/* Used only on the auth screen, which has no header row to sit in */
-.theme-toggle-fixed {
-  position: fixed;
+/* Positions the toggle in the auth card's corner without disturbing the
+   card's centered content flow (the card itself is position: relative). */
+.auth-toggle-corner {
+  position: absolute;
   top: var(--space-md);
   right: var(--space-md);
-  z-index: 10;
+  z-index: 2;
 }
 
 @media (max-width: 480px) {
@@ -131,7 +132,7 @@ button {
     height: 34px;
   }
 
-  .theme-toggle-fixed {
+  .auth-toggle-corner {
     top: var(--space-sm);
     right: var(--space-sm);
   }
@@ -415,41 +416,45 @@ button {
 
 .brand-mark {
   position: relative;
-  display: block;
-  text-align: center;
+  display: inline-block;
   font-family: var(--font-brand);
   font-weight: 400;
-  font-size: 2.1rem;
+  font-size: 1.25rem;
   line-height: 1;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--accent-2);
-  margin: 0 0 var(--space-md);
-  padding-bottom: var(--space-xs);
+  margin: 0 0 var(--space-2xs);
+  padding-bottom: var(--space-2xs);
 }
 
 .brand-mark::after {
   content: "";
   position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 1.5rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent-2);
+}
+
+.brand-mark-hero {
+  display: block;
+  text-align: center;
+  font-size: 2.1rem;
+  letter-spacing: 0.04em;
+  margin: 0 auto var(--space-md);
+  padding-bottom: var(--space-xs);
+  width: fit-content;
+}
+
+.brand-mark-hero::after {
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
   width: 2.25rem;
   height: 3px;
-  border-radius: 2px;
-  background: var(--accent-2);
-}
-
-.brand-mark-sm {
-  font-size: 1.25rem;
-  letter-spacing: 0.03em;
-  margin-bottom: var(--space-2xs);
-  padding-bottom: var(--space-2xs);
-}
-
-.brand-mark-sm::after {
-  width: 1.5rem;
-  height: 2px;
 }
 
 .chat-subtitle {
@@ -642,7 +647,6 @@ button {
 @media (max-width: 480px) {
   .chat-header {
     padding: var(--space-sm) var(--space-md);
-    padding-right: calc(var(--space-md) + 42px);
   }
 
   .chat-body {
