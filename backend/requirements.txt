@@ -1,0 +1,6 @@
+flask
+flask-cors
+firebase-admin
+langchain
+langchain-google-genai
+python-dotenv

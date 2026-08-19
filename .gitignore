@@ -1,0 +1,28 @@
+# Secrets — never commit these, wherever they live in the repo
+.env
+.env.local
+firebase-admin.json
+
+# Python / Flask (backend)
+__pycache__/
+*.pyc
+venv/
+.venv/
+*.egg-info/
+
+# Node / Vite (frontend)
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Editor / OS
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
